@@ -1,0 +1,36 @@
+<html lang="fr">
+<head>
+    <script>
+        function showHint(str) {
+            if (str.length == 0) {
+                document.getElementById("txtHint").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("txtHint").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "../PHP/indexx.php?q=" + str, true);
+                xmlhttp.send();
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <title>Recherche</title>
+    <link rel="stylesheet" type="text/css" href="../CSS/index.css">
+    <script src="https://kit.fontawesome.com/c7e94af301.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<div class="wrap">
+    <form action="">
+        <input type="text" class="searchTerm" onkeyup="showHint(this.value)" placeholder="Rechercher un film">
+    </form>
+</div>
+<div id="txtHint"></div>
+
+</body>
+</html>
